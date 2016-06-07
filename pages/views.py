@@ -2,6 +2,7 @@ from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import render, redirect
 
 from .models import HomePage
+from lanapp.models import Event
 
 def homepage(request):
     """
@@ -20,13 +21,16 @@ def homepage(request):
     first_image = homepage.first_image
     second_image = homepage.second_image
     third_image = homepage.third_image
-
+    
+    event = Event.objects.order_by('-event_start_date')[0]
+    
     context = {
             "homepage": homepage,
             "banner_image": banner_image,
             "first_image": first_image,
             "second_image": second_image,
             "third_image": third_image,
+            "event" : event,
 
     }
     return render(request, "pages/index.html", context)

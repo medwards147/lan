@@ -6,12 +6,14 @@
 <div class="jumbotron">
   <!-- Full Width Image Header -->
   <header class="header-image" style="background:url('{% if banner_image %}{{ banner_image.url }}{% endif %}') no-repeat center center scroll; background-size:cover;">
-      <div class="headline">
-          <div class="container">
-            <h1>{{ homepage.heading }}</h1>
-            <h2>{{ homepage.subheading }}</h2>
+  <div class="container">
+      <div class="row">
+          <div class="col-md-12">
+            <h1 class="text-center">{{ homepage.heading }}</h1>
+            <h2 class="text-center">{{ homepage.subheading }}</h2>
           </div>
       </div>
+  </div>
   </header>
 </div>
 {% endblock jumbotron %}
@@ -19,57 +21,73 @@
 {% block content %}
  <!-- Page Content -->
     <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                {% if first_image %}
+                <img class="img-circle img-responsive" src="{{ first_image.url }}">
+                {% endif %}
+            </div>
 
-        <hr class="featurette-divider">
-
-        <!-- First Featurette -->
-        <div class="featurette" id="about">
-            {% if first_image %}
-            <img class="featurette-image img-circle img-responsive pull-right" src="{{ first_image.url }}">
-            {% endif %}
-            <h2 class="featurette-heading"> {{ homepage.first_content_heading }}</h2>
-            <p class="lead">More details here More details here</p>
-            <p><a href="{% url 'lanapp:events' %}">Learn More Here!</a></p>
-            <p>Don't need to learn anymore?</p>
-            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-            <input type="hidden" name="cmd" value="_s-xclick">
-            <input type="hidden" name="hosted_button_id" value="2H9ZMVMYPP8FS">
-            <input type="submit" value='Click Here to Pay with Paypal' class='btn btn-success btn-lg'>
-            </form>
+            <div class="col-md-7">
+                <h2 class=""> {{ homepage.first_content_heading }}</h2>
+                <p class="lead">{{ event.event_name }} More details here More details here</p>
+                <p><a href="{% url 'lanapp:events' %}">Learn More Here!</a></p>
+                <p>Don't need to learn anymore?</p>
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                <input type="hidden" name="cmd" value="_s-xclick">
+                <input type="hidden" name="hosted_button_id" value="2H9ZMVMYPP8FS">
+                <input type="submit" value='Click Here to Pay with Paypal' class='btn btn-success btn-lg'>
+                </form>
+            </div>
         </div>
+    </div>
 
-        <hr class="featurette-divider">
+    <hr>
 
         <!-- Second Featurette -->
-        <div class="featurette" id="services">
-            {% if second_image %}
-            <img class="featurette-image img-circle img-responsive pull-left" src="{{ second_image.url }}">
-            {% endif %}
-            <h2 class="featurette-heading">{{ homepage.second_content_heading }}</h2>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+            <h2 class="">{{ homepage.second_content_heading }}</h2>
             <span class="text-muted"></span>
             <p class="lead"><strong>We are blah blah blah...</strong></p>
             <p> LEARN MORE BUTTON </p>
+            </div>
+            <div class="col-md-5">
+            {% if second_image %}
+            <img class="img-circle img-responsive" src="{{ second_image.url }}">
+            {% endif %}
+            </div>
         </div>
+    </div>
 
-        <hr class="featurette-divider">
+    <hr>
 
         <!-- Third Featurette -->
-        <div class="featurette" id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
             {% if third_image %}
-            <img class="featurette-image img-circle img-responsive pull-right" src="{{ third_image.url }}">
+            <img class="img-circle img-responsive" src="{{ third_image.url }}">
             {% endif %}
-            <h2 class="featurette-heading">{{ homepage.third_content_heading }}</h2>
+            </div>
+            <div class="col-md-7">
+            <h2 class="">{{ homepage.third_content_heading }}</h2>
             <p class="lead">If you would like more information or would like to contribute in any way,
                             you may contact us at: XXXXX@XXXXX.TLD</p>
+            </div>
         </div>
+    </div>
 
-        <hr class="featurette-divider">
+    <hr>
 
         <!-- Footer -->
         <footer>
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>Copyright &copy; 2016</p>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p>Copyright &copy; 2016</p>
+                    </div>
                 </div>
             </div>
         </footer>
