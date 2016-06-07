@@ -1,0 +1,22 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+  {% include 'pages/_head.html' %}
+
+  <body style="{% block stylebody %}{% endblock%}">
+
+  {% include 'pages/_navbar.html' %}
+
+  {% block jumbotron %}
+  {% endblock jumbotron %}
+
+
+  {% block content %}
+  {% endblock content %}
+
+  {% include 'pages/_javascript.html' %}
+
+</body>
+
+</html>
