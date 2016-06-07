@@ -10,11 +10,6 @@
           <div class="container">
             <h1>{{ homepage.heading }}</h1>
             <h2>{{ homepage.subheading }}</h2>
-            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-            <input type="hidden" name="cmd" value="_s-xclick">
-            <input type="hidden" name="hosted_button_id" value="2H9ZMVMYPP8FS">
-            <input type="submit" value='Click Here to Pay with Paypal - {{ homepage.featured_event.ticket_cost }}' class='btn btn-success btn-lg'>
-            </form>
           </div>
       </div>
   </header>
@@ -32,11 +27,15 @@
             {% if first_image %}
             <img class="featurette-image img-circle img-responsive pull-right" src="{{ first_image.url }}">
             {% endif %}
-            <h2 class="featurette-heading"> {{ homepage.first_content_heading }}  
-                
-            </h2>
-            <p class="lead">{{ homepage.featured_event.details }}</p>
-
+            <h2 class="featurette-heading"> {{ homepage.first_content_heading }}</h2>
+            <p class="lead">More details here More details here</p>
+            <p><a href="{% url 'lanapp:events' %}">Learn More Here!</a></p>
+            <p>Don't need to learn anymore?</p>
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+            <input type="hidden" name="cmd" value="_s-xclick">
+            <input type="hidden" name="hosted_button_id" value="2H9ZMVMYPP8FS">
+            <input type="submit" value='Click Here to Pay with Paypal' class='btn btn-success btn-lg'>
+            </form>
         </div>
 
         <hr class="featurette-divider">
@@ -46,12 +45,10 @@
             {% if second_image %}
             <img class="featurette-image img-circle img-responsive pull-left" src="{{ second_image.url }}">
             {% endif %}
-            <h2 class="featurette-heading">Upcoming Lan Details</h2>
+            <h2 class="featurette-heading">{{ homepage.second_content_heading }}</h2>
             <span class="text-muted"></span>
-            <p class="lead"><strong>Event Location:</strong> {{ homepage.featured_event.location }}<br/>
-            <strong>Start Date:</strong> {{ homepage.featured_event.start_date }}<br/>
-            <strong>End Date:</strong> {{ homepage.featured_event.end_date }}<br/>
-            <strong>Cost:</strong> {{ homepage.featured_event.ticket_cost }}<br/>
+            <p class="lead"><strong>We are blah blah blah...</strong></p>
+            <p> LEARN MORE BUTTON </p>
         </div>
 
         <hr class="featurette-divider">
@@ -61,10 +58,9 @@
             {% if third_image %}
             <img class="featurette-image img-circle img-responsive pull-right" src="{{ third_image.url }}">
             {% endif %}
-            <h2 class="featurette-heading">Thanks to our sponsors!
-                <span class="text-muted">Also, for more information:</span>
-            </h2>
-            <p class="lead">If you would like more information or would like to contribute in any way, you may contact us at: XXXXX@XXXXX.TLD</p>
+            <h2 class="featurette-heading">{{ homepage.third_content_heading }}</h2>
+            <p class="lead">If you would like more information or would like to contribute in any way,
+                            you may contact us at: XXXXX@XXXXX.TLD</p>
         </div>
 
         <hr class="featurette-divider">

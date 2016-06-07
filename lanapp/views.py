@@ -8,7 +8,7 @@ from .models import Event
 
 
 class IndexView(generic.ListView):
-    template_name = 'lanapp/index.html'
+    template_name = 'lanapp/events.html'
     context_object_name = 'upcoming_event'
 
     def get_queryset(self):

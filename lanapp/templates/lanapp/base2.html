@@ -1,0 +1,22 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+  {% include 'lanapp/_head.html' %}
+  </head>
+
+  <body style="{% block stylebody %}{% endblock%}">
+  {% include 'lanapp/_navbar.html' %}
+
+  {% block jumbotron %}
+  {% endblock jumbotron %}
+
+  {% block content %}
+  {% endblock content %}
+
+  {% include 'lanapp/_javascript.html' %}
+
+  </body>
+
+</html>

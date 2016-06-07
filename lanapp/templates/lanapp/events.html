@@ -1,0 +1,14 @@
+{% extends "pages/base.html" %}
+{% load staticfiles %}
+
+{% block head_title %}Events{% endblock %}
+
+{% block content %}
+
+{% for event in upcoming_event %}
+<h1>event.event_name</h1>
+{% endfor %}
+
+{% endblock content %}
+
+
