@@ -1,0 +1,7 @@
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'polls/css/style.css' %}" />
+
+{% for event in upcoming_event %}
+<h1>{{ event.event_name }}</h1>
+{% endfor %}
