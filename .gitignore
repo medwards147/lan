@@ -1,0 +1,12 @@
+*.pyc
+*.pyo
+db.sqlite3
+.*~
+lan/lanapp/migrations
+*.jpg
+*.png
+*.jpeg
+.DS_Store
+production.py
+wsgi.py
+media/*
