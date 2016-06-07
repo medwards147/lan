@@ -43,7 +43,8 @@ class Event(models.Model):
 
     def __str__(self):
         return self.event_name
-    
+        
+    @property
     def full_address(self):
         return "{}, {}, {} {}".format(self.street_address, self.city, self.state, self.zip_code)
     
