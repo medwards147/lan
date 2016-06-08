@@ -32,6 +32,10 @@ def upload_location(instance, filename):
 class Event(models.Model):
     event_name = models.CharField(max_length=100)
     event_description = models.TextField()
+    image = models.ImageField(upload_to=upload_location,
+                    null=True,
+                    blank=True,
+                    help_text="Main image associated with this event")
     event_start_date = models.DateTimeField(_('Event Start'))
     event_end_date = models.DateTimeField(_('Event End'))
     venue = models.CharField(max_length=75) 
@@ -39,7 +43,10 @@ class Event(models.Model):
     street_address = models.CharField(max_length=75) 
     city = models.CharField(max_length=75, default="Rome") 
     state = models.CharField(max_length=75, default="New York") 
-    zip_code = models.CharField(max_length=75, default="13440") 
+    zip_code = models.CharField(max_length=75, default="13440")
+    sponsors = models.ManyToManyField("Sponsor", blank=True)
+    games = models.ManyToManyField("Game", blank=True)
+    prizes = models.ManyToManyField("Prize", blank=True)
 
     def __str__(self):
         return self.event_name
@@ -68,7 +75,6 @@ class Game(models.Model):
     title = models.CharField(max_length=100)
     url = models.URLField(blank=True, null=True)
     genre = models.CharField(max_length=100)
-    event = models.ForeignKey(Event, on_delete=models.CASCADE)
     #gaming_system = models.CharField(max_length=100) # define this as a choice field?
     image = models.ImageField(upload_to=upload_location,
                         null=True,
@@ -82,7 +88,6 @@ class Game(models.Model):
 class Sponsor(models.Model):
     name = models.CharField(max_length=100)
     url = models.URLField(blank=True, null=True)
-    event = models.ForeignKey(Event, on_delete=models.CASCADE)
     image = models.ImageField(upload_to=upload_location,
                         null=True,
                         blank=True,
@@ -94,7 +99,6 @@ class Sponsor(models.Model):
 class Prize(models.Model):
     name = models.CharField(max_length=100)
     url = models.URLField(blank=True, null=True)
-    event = models.ForeignKey(Event, on_delete=models.CASCADE)
     image = models.ImageField(upload_to=upload_location,
                         null= True,
                         blank=True,

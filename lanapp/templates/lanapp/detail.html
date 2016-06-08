@@ -1,6 +1,31 @@
-<h1>{{ event.event_name }}</h1>
-<p>{{ event.event_start_date }} to {{ event.event_end_date }}</p>
-<p>{{ event.event_description }}</p>
-<p>{{ event.full_address }}</p>
-<p>{{ event.venue }}</p>
-<p>{{ event.logistics_information }}</p>
+{% extends "pages/base.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+
+		<i class="fa fa-share md"></i>
+		<img class="img-responsive" alt="No Picture Available" src="{% if event.image %}{{ event.image.url }}{% endif %}">
+
+		<div class="row">
+
+		<h1>{{ event.event_name }} </h1>
+
+		<p>{{ event.event_start_date|date:"D, M d" }} to {{ event.event_end_date|date:"D, M d"  }}</p>
+		                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                <input type="hidden" name="cmd" value="_s-xclick">
+                <input type="hidden" name="hosted_button_id" value="2H9ZMVMYPP8FS">
+                <input type="submit" value='Click Here to Pay with Paypal' class='btn btn-primary btn-lg active'>
+                </form>
+		<p>{{ event.event_description }}</p>
+		<p>{{ event.full_address }}</p>
+		<p>{{ event.venue }}</p>
+		<p>{{ event.logistics_information }}</p>
+		</div>
+	</div>
+</div>
+
+{% endblock content %}

@@ -3,10 +3,85 @@
 
 {% block head_title %}Events{% endblock %}
 
+{% block custom_css %}
+{{ block.super }}
+<link href="{% static 'lanapp/css/events_list.css' %}" rel="stylesheet" media="screen">
+{% endblock %}
+
 {% block content %}
 
-<h1>{{ upcoming_event.event_name }}</h1>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h2>CNY LAN Events</h2>
 
+				{% for event in events %}
+				<div class="col-sm-4">
+				<div class="thumbnail">
+				<a href="{% url 'lanapp:detail' event.id %}" class="overlay">
+				<i class="fa fa-share md"></i>
+				</a>
+				<img class="img-responsive" alt="No Picture Available" src="{% if event.image %}{{ event.image.url }}{% endif %}">
+				</div>
+				<div class="row">
+				<div class="col-md-3">
+				<h3><span class="label label-info">{{ event.event_start_date|date:"M j" }}</span></h3>
+				</div>
+				<div class="col-md-9">
+				  <strong>{{ event.event_name }}</strong><br>
+				  <em>at {{ event.venue }}</em><br>
+				  <span class="small">{{ event.event_start_date }} - {{ event.event_end_date }}</span>
+				</div>
+				</div>
+				<hr>
+				</div>
+				{% endfor %}
+
+			</div>			
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h2>Games Played</h2>
+
+				{% for game in games %}
+				<div class="col-sm-2">
+				<div class="thumbnail">
+				<a href="{{ game.url }}" class="overlay">
+				<i class="fa fa-share md"></i>
+				</a>
+				<img class="img-responsive" alt="{{ game.title }}" src="{% if game.image %}{{ game.image.url }}{% endif %}">
+				</div>
+				</div>
+				{% endfor %}
+
+			</div>			
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h2>Sponsors</h2>
+
+				{% for sponsor in sponsors %}
+				<div class="col-sm-2">
+				<div class="thumbnail">
+				<a href="{{ game.url }}" class="overlay">
+				<i class="fa fa-share md"></i>
+				</a>
+				<img class="img-responsive" alt="{{ sponsor.name }}" src="{% if sponsor.image %}{{ sponsor.image.url }}{% endif %}">
+				</div>
+				</div>
+				{% endfor %}
+
+			</div>			
+		</div>
+	</div>
 {% endblock content %}
+
+
 
 

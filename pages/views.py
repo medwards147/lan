@@ -22,7 +22,7 @@ def homepage(request):
     second_image = homepage.second_image
     third_image = homepage.third_image
     
-    event = Event.objects.order_by('-event_start_date')[0]
+    event = Event.objects.order_by('event_start_date')[0]
     
     context = {
             "homepage": homepage,
@@ -38,4 +38,8 @@ def homepage(request):
 def about(request):
     context = {}
     return render(request, "pages/about.html", context)
+
+def contact(request):
+    context = {}
+    return render(request, "pages/contact.html", context)
 

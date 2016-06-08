@@ -18,7 +18,7 @@
 
 {% block content %}
  <!-- Page Content -->
-    <div class="container">
+    <div class="container text-center">
         <div class="row">
             <div class="col-md-5">
                 {% if first_image %}
@@ -28,13 +28,16 @@
 
             <div class="col-md-7">
                 <h2 class=""> {{ homepage.first_content_heading }}</h2>
-                <p class="lead">{{ event.event_name }} More details here More details here</p>
-                <p><a href="{% url 'lanapp:events' %}">Learn More Here!</a></p>
+                <p class="lead">{{ event.event_name }} <br /> 
+                    {{ event.event_start_date|date:"l, M d"}} - {{ event.event_end_date|date:"l, M d" }} 
+                </p>
+                <a href="{% url 'lanapp:detail' event.id %}" class="btn btn-primary btn-lg active" role="button">Learn More</a>
+                <hr>
                 <p>Don't need to learn anymore?</p>
                 <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
                 <input type="hidden" name="cmd" value="_s-xclick">
                 <input type="hidden" name="hosted_button_id" value="2H9ZMVMYPP8FS">
-                <input type="submit" value='Click Here to Pay with Paypal' class='btn btn-success btn-lg'>
+                <input type="submit" value='Click Here to Pay with Paypal' class='btn btn-primary btn-lg active'>
                 </form>
             </div>
         </div>

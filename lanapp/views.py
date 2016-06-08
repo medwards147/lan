@@ -4,18 +4,21 @@ from django.core.urlresolvers import reverse
 from django.views import generic
 from django.utils import timezone
 
-from .models import Event
+from .models import Event, Game, Prize, Sponsor
 
 
 class IndexView(generic.ListView):
     template_name = 'lanapp/events.html'
-    context_object_name = 'upcoming_event'
+    context_object_name = 'events'
+    queryset = Event.objects.all().order_by('event_start_date')
 
-    def get_queryset(self):
-        """
-        return the event with the nearest start date
-        """
-        return Event.objects.all().order_by('-event_start_date')[0]
+    def get_context_data(self, **kwargs):
+        context = super(IndexView, self).get_context_data(**kwargs)
+        context['sponsors'] = Sponsor.objects.all()
+        context['games'] = Game.objects.all()
+        context['prizes'] = Prize.objects.all()
+        # And so on for more models
+        return context
 
 class DetailView(generic.DetailView):
     model = Event
