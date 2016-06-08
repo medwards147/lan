@@ -6,14 +6,12 @@
 <div class="jumbotron">
   <!-- Full Width Image Header -->
   <header class="header-image" style="background:url('{% if banner_image %}{{ banner_image.url }}{% endif %}') no-repeat center center scroll; background-size:cover;">
-  <div class="container">
-      <div class="row">
-          <div class="col-md-12">
+      <div class="headline">
+          <div class="container">
             <h1 class="text-center">{{ homepage.heading }}</h1>
             <h2 class="text-center">{{ homepage.subheading }}</h2>
           </div>
       </div>
-  </div>
   </header>
 </div>
 {% endblock jumbotron %}

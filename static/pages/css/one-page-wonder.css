@@ -1,3 +1,41 @@
 body { 
     padding-top: 70px;
 }
+
+.navbar {
+    margin-bottom: 0;
+}
+
+.header-image {
+    display: block;
+    width: 100%;
+    text-align: center;
+    
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+.headline {
+    padding: 75px 0;
+}
+
+.headline h1 {
+    font-size: 100px;
+    background: #fff;
+    background: rgba(255,255,255,0.7);
+}
+
+.headline h2 {
+    font-size: 50px;
+    background: #fff;
+    background: rgba(255,255,255,0.7);
+}
+
+
+.jumbotron {
+    color: inherit;
+    background-color: #fff;
+    padding-top: 0;
+}

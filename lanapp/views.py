@@ -15,7 +15,7 @@ class IndexView(generic.ListView):
         """
         return the event with the nearest start date
         """
-        return Event.objects.all().order_by('-event_start_date')[:1]
+        return Event.objects.all().order_by('-event_start_date')[0]
 
 class DetailView(generic.DetailView):
     model = Event
