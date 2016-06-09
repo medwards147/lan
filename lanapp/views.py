@@ -12,14 +12,6 @@ class IndexView(generic.ListView):
     context_object_name = 'events'
     queryset = Event.objects.all().order_by('event_start_date')
 
-    def get_context_data(self, **kwargs):
-        context = super(IndexView, self).get_context_data(**kwargs)
-        context['sponsors'] = Sponsor.objects.all()
-        context['games'] = Game.objects.all()
-        context['prizes'] = Prize.objects.all()
-        # And so on for more models
-        return context
-
 class DetailView(generic.DetailView):
     model = Event
     template_name = 'lanapp/detail.html'

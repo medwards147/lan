@@ -1,5 +1,7 @@
 {% extends "pages/base.html" %}
 
+{% block head_title %}About{% endblock %}
+
 {% block content %}
 
 <div class="container">
@@ -9,5 +11,44 @@
 		</div>
 	</div>
 </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Games Played</h2>
+
+                {% for game in games %}
+                <div class="col-sm-2">
+                <div class="thumbnail">
+                <a href="{{ game.url }}" class="overlay">
+                <i class="fa fa-share md"></i>
+                </a>
+                <img class="img-responsive" alt="{{ game.title }}" src="{% if game.image %}{{ game.image.url }}{% endif %}">
+                </div>
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Sponsors</h2>
+
+                {% for sponsor in sponsors %}
+                <div class="col-sm-2">
+                <div class="thumbnail">
+                <a href="{{ game.url }}" class="overlay">
+                <i class="fa fa-share md"></i>
+                </a>
+                <img class="img-responsive" alt="{{ sponsor.name }}" src="{% if sponsor.image %}{{ sponsor.image.url }}{% endif %}">
+                </div>
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
 
 {% endblock %}

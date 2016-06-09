@@ -1,8 +1,9 @@
 from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import render, redirect
+from django.views import generic
 
 from .models import HomePage
-from lanapp.models import Event
+from lanapp.models import Event, Prize, Sponsor, Game
 
 def homepage(request):
     """
@@ -35,9 +36,17 @@ def homepage(request):
     }
     return render(request, "pages/index.html", context)
 
-def about(request):
-    context = {}
-    return render(request, "pages/about.html", context)
+class AboutView(generic.ListView):
+    template_name = 'pages/about.html'
+    context_object_name = 'prizes'
+    queryset = Prize.objects.all()
+
+    def get_context_data(self, **kwargs):
+        context = super(AboutView, self).get_context_data(**kwargs)
+        context['sponsors'] = Sponsor.objects.all()
+        context['games'] = Game.objects.all()
+        # And so on for more models
+        return context
 
 def contact(request):
     context = {}
