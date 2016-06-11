@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'lanapp',
 
     'crispy_forms',
+    'front',
 
     'django.contrib.admin',
     'django.contrib.auth',

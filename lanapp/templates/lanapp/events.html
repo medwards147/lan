@@ -9,34 +9,38 @@
 {% endblock %}
 
 {% block content %}
-
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
 				<h2>CNY LAN Events</h2>
-
-				{% for event in events %}
-				<div class="col-sm-4">
-				<div class="thumbnail">
-				<a href="{% url 'lanapp:detail' event.id %}" class="overlay">
-				<i class="fa fa-share md"></i>
-				</a>
-				<img class="img-responsive" alt="No Picture Available" src="{% if event.image %}{{ event.image.url }}{% endif %}">
-				</div>
 				<div class="row">
-				<div class="col-md-3">
-				<h3><span class="label label-info">{{ event.event_start_date|date:"M j" }}</span></h3>
-				</div>
-				<div class="col-md-9">
-				  <strong>{{ event.event_name }}</strong><br>
-				  <em>at {{ event.venue }}</em><br>
-				  <span class="small">{{ event.event_start_date }} - {{ event.event_end_date }}</span>
-				</div>
-				</div>
-				<hr>
+					{% for event in events %}
+					<div class="col-sm-6">
+						<div class="thumbnail">
+							<a href="{% url 'lanapp:detail' event.id %}" class="overlay">
+							<i class="fa fa-share md"></i>
+							</a>
+							<img class="img-responsive" alt="No Picture Available" src="{% if event.image %}{{ event.image.url }}{% endif %}">
+						</div>
+							<div class="row">
+								<div class="col-md-3">
+									<h3><span class="label label-info">{{ event.event_start_date|date:"M j" }}</span></h3>
+								</div>
+								<div class="col-md-9">
+								  	<strong>{{ event.event_name }}</strong><br>
+								  	<em>at {{ event.venue }}</em><br>
+								  	<span class="small">{{ event.event_start_date }} - {{ event.event_end_date }}</span>
+								</div>
+							</div>
+						<hr>
+					</div>
+					<div class="col-sm-6">
+
+
+
+					</div>
 				</div>
 				{% endfor %}
-
 			</div>
 		</div>
 	</div>

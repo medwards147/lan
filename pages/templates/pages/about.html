@@ -1,5 +1,7 @@
 {% extends "pages/base.html" %}
 
+{% load front_tags %}
+
 {% block head_title %}About{% endblock %}
 
 {% block content %}
@@ -7,7 +9,10 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">
+        {% front_edit "about us" request.path request.LANGUAGE_CODE %}
 		<h2>About Us</h2>
+		<p class="lead">content about us goes here</p>
+        {% end_front_edit %}
 		</div>
 	</div>
 </div>
@@ -20,7 +25,6 @@
                 <div class="col-sm-2">
                 <div class="thumbnail">
                 <a href="{{ game.url }}" class="overlay">
-                <i class="fa fa-share md"></i>
                 </a>
                 <img class="img-responsive" alt="{{ game.title }}" src="{% if game.image %}{{ game.image.url }}{% endif %}">
                 </div>
@@ -40,7 +44,6 @@
                 <div class="col-sm-2">
                 <div class="thumbnail">
                 <a href="{{ game.url }}" class="overlay">
-                <i class="fa fa-share md"></i>
                 </a>
                 <img class="img-responsive" alt="{{ sponsor.name }}" src="{% if sponsor.image %}{{ sponsor.image.url }}{% endif %}">
                 </div>

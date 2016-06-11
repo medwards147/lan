@@ -6,6 +6,8 @@ from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 
 
+
+
 class HomePageManager(models.Manager):
     def create_homepage(self, title):
         homepage = self.create(homepage_name=title, current_homepage=True)
@@ -42,6 +44,22 @@ class TimeStampedModel(models.Model):
     class Meta:
         abstract = True
 
+class About(TimeStampedModel):
+    title = models.CharField(max_length=75)
+    description = models.TextField(
+        help_text="Enter what you want to say about CNY LAN. This will show up at the top of the about page")
+
+    class Meta:
+        verbose_name = _("About page")
+        verbose_name_plural = _("About pages")
+
+    @property
+    def last_page_updated(self):
+        last_page_updated = About.objects.all().order_by('updated')[0]
+        if self.title == last_page_updated.title:
+            return True
+        return False
+
 class HomePage(models.Model):
     """
     Main HomePage object. It's useful to build in the HomePage in the back end. Although it does contrict the
@@ -51,38 +69,29 @@ class HomePage(models.Model):
     current_homepage = models.BooleanField(
         help_text="Click here if you want this page to be the current home page",)
     homepage_name = models.CharField(max_length=35)
-    heading = models.CharField(max_length=200,
-        help_text="The main heading for the homepage",
-        default="Central New York LAN")
-    subheading = models.CharField(max_length=200,
-        help_text="The subheading just below the heading",
-        default="Default subheading")
+    # heading = models.CharField(max_length=200,
+    #     help_text="The main heading for the homepage",
+    #     default="Central New York LAN")
+    # subheading = models.CharField(max_length=200,
+    #     help_text="The subheading just below the heading",
+    #     default="Default subheading")
     banner_image = models.ImageField(upload_to=upload_location,
                     null=True,
                     blank=True,
                     help_text="Banner Image")
-    first_content_heading = models.CharField(max_length=200,
-        help_text="First content heading under banner",
-        default="First content heading under banner")
     first_image = models.ImageField(upload_to=upload_location,
                 null=True,
                 blank=True,
                 help_text="First Content Heading Image")
-    second_content_heading = models.CharField(max_length=200,
-        help_text="Second content heading under banner",
-        default="Default Second Content Heading")
     second_image = models.ImageField(upload_to=upload_location,
             null=True,
             blank=True,
             help_text="Second Content Heading Image")
-    third_content_heading = models.CharField(max_length=200,
-        help_text="Third content heading under banner",
-        default="Default Third Content Heading")
     third_image = models.ImageField(upload_to=upload_location,
             null=True,
             blank=True,
             help_text="Third Content Heading Image")
-
+    
     objects = HomePageManager()
     
     class Meta:

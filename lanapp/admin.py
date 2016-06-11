@@ -22,7 +22,7 @@ from .models import Event, Game, Prize, Sponsor
 
 class EventAdmin(admin.ModelAdmin):
     fieldsets = [
-        ('Event Info',               {'fields': ['event_name', 'event_description', 'image']}),
+        ('Event Info',               {'fields': ['event_name', 'event_description', 'pay_button_text', 'image']}),
         ('Date information', {'fields': ['event_start_date', 'event_end_date'], 'classes': ['collapse']}),
         ('Location and Logistics information', {'fields': ['venue','logistics_information', 'street_address', 'city', 'state', 'zip_code'], 'classes': ['collapse']}),
         ('Sponsors, Games, Prizes', {'fields': ['sponsors', 'games', 'prizes'], 'classes': ['collapse']}),

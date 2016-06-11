@@ -30,7 +30,7 @@ def upload_location(instance, filename):
 
 @python_2_unicode_compatible
 class Event(models.Model):
-    event_name = models.CharField(max_length=100)
+    event_name = models.CharField(max_length=100, default="Pay here with Paypal")
     event_description = models.TextField()
     image = models.ImageField(upload_to=upload_location,
                     null=True,
@@ -38,7 +38,9 @@ class Event(models.Model):
                     help_text="Main image associated with this event")
     event_start_date = models.DateTimeField(_('Event Start'))
     event_end_date = models.DateTimeField(_('Event End'))
-    venue = models.CharField(max_length=75) 
+    pay_button_text = models.CharField(max_length=100)
+    venue = models.CharField(max_length=75)
+    price = models.IntegerField(default=35)
     logistics_information = models.TextField()
     street_address = models.CharField(max_length=75) 
     city = models.CharField(max_length=75, default="Rome") 

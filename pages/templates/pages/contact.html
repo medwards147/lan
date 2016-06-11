@@ -1,6 +1,6 @@
 {% extends "pages/base.html" %}
 
-{% load crispy_forms_tags %}
+{% load crispy_forms_tags front_tags %}
 
 {% block head_title %}Contact{% endblock %}
 
@@ -8,7 +8,9 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6">
+        {% front_edit "contact us" request.path request.LANGUAGE_CODE %}
         <h1>Contact Us</h1>
+        {% end_front_edit %}
         <form role="form" action="." method="post">{% csrf_token %}
             {{ form|crispy }}
             <input type='submit' value='Send Email' class='btn btn-default'>

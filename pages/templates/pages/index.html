@@ -1,98 +1,137 @@
 {% extends "pages/base.html" %}
 
+{% load front_tags %}
+
 {% block head_title %}Home{% endblock %}
 
 {% block jumbotron %}
 <div class="jumbotron">
   <!-- Full Width Image Header -->
-  <header class="header-image" style="background:url('{% if banner_image %}{{ banner_image.url }}{% endif %}') no-repeat center center scroll; background-size:cover;">
-      <div class="headline">
-          <div class="container">
-            <h1 class="text-center">{{ homepage.heading }}</h1>
-            <h2 class="text-center">{{ homepage.subheading }}</h2>
-          </div>
-      </div>
+  <header class="header-image" style="background:url('{% if banner_image %}{{ banner_image.url }}{% endif %}')">
+    <div class="container">
+        <div class="headline">
+            <div class="row">
+                <div class="col-sm-10 col-sm-offset-1">
+                {% front_edit "edit heading" request.path request.LANGUAGE_CODE %}
+                <h1 class="text-center">CENTRAL NEW YORK LAN</h1>
+                {% end_front_edit %}
+                </div>
+                <div class="col-sm-10 col-sm-offset-1">
+                {% front_edit "edit sub heading" request.path request.LANGUAGE_CODE %}
+                <h2 class="text-center">BYOC LAN</h2>
+                {% end_front_edit %}
+                </div>
+
+                <div class="col-sm-10 col-sm-offset-1">
+                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                <input type="hidden" name="cmd" value="_s-xclick">
+                <input type="hidden" name="hosted_button_id" value="2H9ZMVMYPP8FS">
+
+                <input type="submit" value='{{ event.pay_button_text }}' class='btn btn-primary btn-lg active'>
+
+                </form>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
   </header>
 </div>
 {% endblock jumbotron %}
 
 {% block content %}
  <!-- Page Content -->
-    <div class="container text-center">
+
+
+    <!-- First Featurette -->
+    <div class="container">
         <div class="row">
             <div class="col-md-5">
                 {% if first_image %}
-                <img class="img-circle img-responsive" src="{{ first_image.url }}">
+                <img class="img-circle img-responsive center-block" src="{{ first_image.url }}">
                 {% endif %}
             </div>
 
-            <div class="col-md-7">
-                <h2 class=""> {{ homepage.first_content_heading }}</h2>
-                <p class="lead">{{ event.event_name }} <br /> 
-                    {{ event.event_start_date|date:"l, M d"}} - {{ event.event_end_date|date:"l, M d" }} 
-                </p>
-                <a href="{% url 'lanapp:detail' event.id %}" class="btn btn-primary btn-lg active" role="button">Learn More</a>
-                <hr>
-                <p>Don't need to learn anymore?</p>
-                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                <input type="hidden" name="cmd" value="_s-xclick">
-                <input type="hidden" name="hosted_button_id" value="2H9ZMVMYPP8FS">
-                <input type="submit" value='Click Here to Pay with Paypal' class='btn btn-primary btn-lg active'>
-                </form>
+            <div class="col-md-5 col-md-offset-1">
+                {% front_edit "first feature heading" request.path request.LANGUAGE_CODE %}
+                First feature heading
+                {% end_front_edit %}
+                <p class="">{{ event.event_start_date|date:"l, M d"}} - {{ event.event_end_date|date:"l, M d" }}</p>
+                {% front_edit "first feature content" request.path request.LANGUAGE_CODE %}
+                Stuff goes here you can edit with front-end editor
+                {% end_front_edit %}
+                <a href="{% url 'lanapp:detail' event.id %}" class="btn btn-primary btn-lg active" role="button">Click Here to Learn More</a>
             </div>
         </div>
     </div>
 
+
+
     <hr>
 
-        <!-- Second Featurette -->
+    <!-- Second Featurette -->
     <div class="container">
         <div class="row">
             <div class="col-md-7">
-            <h2 class="">{{ homepage.second_content_heading }}</h2>
-            <span class="text-muted"></span>
-            <p class="lead"><strong>We are blah blah blah...</strong></p>
-            <p> LEARN MORE BUTTON </p>
+            {% front_edit "second feature heading" request.path request.LANGUAGE_CODE %}
+            heading goes here
+            {% end_front_edit %}
+            <p class=""><strong>Location:</strong> {{ event.venue }}</p>
+            <p class=""><strong>Address:</strong> {{ event.full_address }}</p>
+            {% front_edit "second feature content" request.path request.LANGUAGE_CODE %}
+            Stuff goes here you can edit with front-end editor
+            {% end_front_edit %}
             </div>
-            <div class="col-md-5">
-            {% if second_image %}
-            <img class="img-circle img-responsive" src="{{ second_image.url }}">
-            {% endif %}
+            <div class="col-md-5">            
+                {% if second_image %}         
+                <img class="img-circle img-responsive center-block" src="{{ second_image.url }}">         
+                {% endif %}
             </div>
         </div>
     </div>
 
     <hr>
 
-        <!-- Third Featurette -->
+    <!-- Third Featurette -->
     <div class="container">
         <div class="row">
             <div class="col-md-5">
-            {% if third_image %}
-            <img class="img-circle img-responsive" src="{{ third_image.url }}">
+            {% if third_image %} 
+            <img class="img-circle img-responsive center-block" src="{{ third_image.url }}">
             {% endif %}
             </div>
-            <div class="col-md-7">
-            <h2 class="">{{ homepage.third_content_heading }}</h2>
-            <p class="lead">If you would like more information or would like to contribute in any way,
-                            you may contact us at: XXXXX@XXXXX.TLD</p>
+            <div class="col-md-5 col-md-offset-1">
+            {% front_edit "third feature heading" request.path request.LANGUAGE_CODE %}
+            Stuff goes here you can edit with front-end editor
+            {% end_front_edit  %}
+            {% front_edit "third feature content" request.path request.LANGUAGE_CODE %}
+            Stuff goes here you can edit with front-end editor
+            {% end_front_edit  %}
+
             </div>
         </div>
     </div>
 
     <hr>
+    <hr>
+
+
+
 
         <!-- Footer -->
         <footer>
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
+                        {% front_edit "footer feature" request.path request.LANGUAGE_CODE %}
                         <p>Copyright &copy; 2016</p>
+                        {% end_front_edit  %}
                     </div>
                 </div>
             </div>
         </footer>
 
-    </div>
+
     <!-- /.container -->
 {% endblock content %}

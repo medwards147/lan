@@ -1,9 +1,12 @@
+
 from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.views import generic
 
-from .models import HomePage
+from .forms import ContactForm
+from .models import About, HomePage
 from lanapp.models import Event, Prize, Sponsor, Game
+
 
 def homepage(request):
     """
@@ -38,17 +41,29 @@ def homepage(request):
 
 class AboutView(generic.ListView):
     template_name = 'pages/about.html'
-    context_object_name = 'prizes'
-    queryset = Prize.objects.all()
+    context_object_name = 'about'
+    queryset = About.objects.all().order_by('-updated')[0]
 
     def get_context_data(self, **kwargs):
         context = super(AboutView, self).get_context_data(**kwargs)
         context['sponsors'] = Sponsor.objects.all()
         context['games'] = Game.objects.all()
+        context['prizes'] = Prize.objects.all()
         # And so on for more models
         return context
 
 def contact(request):
-    context = {}
-    return render(request, "pages/contact.html", context)
-
+    if request.method == 'GET':
+        form = ContactForm()
+    else:
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            subject = form.cleaned_data['subject']
+            from_email = form.cleaned_data['from_email']
+            message = form.cleaned_data['message']
+            try:
+                send_mail(subject, message, from_email, ['admin@example.com'])
+            except BadHeaderError:
+                return HttpResponse('Invalid header found.')
+            return redirect('thanks')
+    return render(request, "pages/contact.html", {'form': form})
