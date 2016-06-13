@@ -1,7 +1,7 @@
 *.pyc
 *.pyo
 db.sqlite3
-.*~
+*.*~
 lan/lanapp/migrations
 *.jpg
 *.png
