@@ -1,10 +1,12 @@
 
+
+from django.core.mail import send_mail, BadHeaderError
 from django.http import HttpResponse,HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.views import generic
 
 from .forms import ContactForm
-from .models import About, HomePage
+from .models import HomePage
 from lanapp.models import Event, Prize, Sponsor, Game
 
 
@@ -39,18 +41,9 @@ def homepage(request):
     }
     return render(request, "pages/index.html", context)
 
-class AboutView(generic.ListView):
-    template_name = 'pages/about.html'
-    context_object_name = 'about'
-    queryset = About.objects.all().order_by('-updated')[0]
-
-    def get_context_data(self, **kwargs):
-        context = super(AboutView, self).get_context_data(**kwargs)
-        context['sponsors'] = Sponsor.objects.all()
-        context['games'] = Game.objects.all()
-        context['prizes'] = Prize.objects.all()
-        # And so on for more models
-        return context
+def about(request):
+    context = {}
+    return render(request, "pages/about.html", context)
 
 def contact(request):
     if request.method == 'GET':

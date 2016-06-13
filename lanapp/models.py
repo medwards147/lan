@@ -56,10 +56,12 @@ class Event(models.Model):
     @property
     def full_address(self):
         return "{}, {}, {} {}".format(self.street_address, self.city, self.state, self.zip_code)
-    
+
     def event_coming_soon(self):
         now = timezone.now()
-        return now - datetime.timedelta(days=7) <= self.event_start_date <= now
+        if now < self.event_start_date:
+            return now + datetime.timedelta(days=30) >= self.event_start_date
+        return False
 
     @property   
     def event_completed(self):

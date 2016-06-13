@@ -1,137 +1,123 @@
 {% extends "pages/base.html" %}
 
-{% load front_tags %}
+{% load front_tags thumbnail %}
 
 {% block head_title %}Home{% endblock %}
 
-{% block jumbotron %}
-<div class="jumbotron">
-  <!-- Full Width Image Header -->
-  <header class="header-image" style="background:url('{% if banner_image %}{{ banner_image.url }}{% endif %}')">
+{% block bodyclass %}home{% endblock %}
+
+{% block header %}
+
+<!-- Header -->
+<header id="head" style="background:url('{% if banner_image %}{{ banner_image.url }}{% endif %}')">
     <div class="container">
-        <div class="headline">
-            <div class="row">
-                <div class="col-sm-10 col-sm-offset-1">
-                {% front_edit "edit heading" request.path request.LANGUAGE_CODE %}
-                <h1 class="text-center">CENTRAL NEW YORK LAN</h1>
-                {% end_front_edit %}
-                </div>
-                <div class="col-sm-10 col-sm-offset-1">
-                {% front_edit "edit sub heading" request.path request.LANGUAGE_CODE %}
-                <h2 class="text-center">BYOC LAN</h2>
-                {% end_front_edit %}
-                </div>
-
-                <div class="col-sm-10 col-sm-offset-1">
-                <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                <input type="hidden" name="cmd" value="_s-xclick">
-                <input type="hidden" name="hosted_button_id" value="2H9ZMVMYPP8FS">
-
-                <input type="submit" value='{{ event.pay_button_text }}' class='btn btn-primary btn-lg active'>
-
-                </form>
-                </div>
-                
-                
-            </div>
+        <div class="row">
+            {% front_edit "edit heading" request.path request.LANGUAGE_CODE %}
+            <h1 class="lead">CENTRAL NEW YORK</h1>
+            <p class="tagline">BYOC LAN</p>
+            {% end_front_edit %}
+        
         </div>
     </div>
-  </header>
-</div>
-{% endblock jumbotron %}
+</header>
+<!-- /Header -->
+{% endblock header %}
 
 {% block content %}
  <!-- Page Content -->
-
-
-    <!-- First Featurette -->
-    <div class="container">
+<hr>
+<!-- Intro -->
+<div class="container">
         <div class="row">
-            <div class="col-md-5">
-                {% if first_image %}
-                <img class="img-circle img-responsive center-block" src="{{ first_image.url }}">
-                {% endif %}
-            </div>
-
-            <div class="col-md-5 col-md-offset-1">
-                {% front_edit "first feature heading" request.path request.LANGUAGE_CODE %}
-                First feature heading
+            
+            <!-- Article main content -->
+            <article class="col-md-6 maincontent">
+                <h1 class="page-title"><strong>{{ event.event_name }}</strong> </h1>
+                <p><strong>Date:</strong> {{ event.event_start_date|date:"D, M d" }} to {{ event.event_end_date|date:"D, M d"  }}</p>
+                <p><strong>Location:</strong> {{ event.venue }}, {{ event.full_address }}</p>
+                {% front_edit "event details" request.path request.LANGUAGE_CODE %}
+                <p>Stuff here about the event Stuff here about the event Stuff here about the event Stuff here about the event</p>
+                <p>Stuff here about the event Stuff here about the event Stuff here about the event Stuff here about the event</p>
                 {% end_front_edit %}
-                <p class="">{{ event.event_start_date|date:"l, M d"}} - {{ event.event_end_date|date:"l, M d" }}</p>
-                {% front_edit "first feature content" request.path request.LANGUAGE_CODE %}
-                Stuff goes here you can edit with front-end editor
-                {% end_front_edit %}
-                <a href="{% url 'lanapp:detail' event.id %}" class="btn btn-primary btn-lg active" role="button">Click Here to Learn More</a>
-            </div>
-        </div>
-    </div>
+                <p>
+                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                    <input type="hidden" name="cmd" value="_s-xclick">
+                    <input type="hidden" name="hosted_button_id" value="2H9ZMVMYPP8FS">
+                    <button type="submit" value='' class='btn btn-success'>
+                        <span class="glyphicon glyphicon-shopping-cart"></span>  {{ event.pay_button_text }}
+                    </button>
+                    
+                    <a href="{% url 'lanapp:detail' event.id %}" class="btn btn-primary" role="button">
+                        <span class="glyphicon glyphicon-share-alt"></span>  More Info
+                    </a>
+                    </form>
+                </p>
+            </article>
+            <!-- /Article -->
+            
+            <!-- Sidebar -->
+            <aside class="col-md-6 sidebar sidebar-right">
 
+                <div class="row widget">
+                    <div class="col-xs-12">
+                        {% thumbnail event.image "400" as im %}
+                        <img class="img-responsive img-circle" src="{{ im.url }}"></img>
+                        {% endthumbnail %}
 
-
-    <hr>
-
-    <!-- Second Featurette -->
-    <div class="container">
-        <div class="row">
-            <div class="col-md-7">
-            {% front_edit "second feature heading" request.path request.LANGUAGE_CODE %}
-            heading goes here
-            {% end_front_edit %}
-            <p class=""><strong>Location:</strong> {{ event.venue }}</p>
-            <p class=""><strong>Address:</strong> {{ event.full_address }}</p>
-            {% front_edit "second feature content" request.path request.LANGUAGE_CODE %}
-            Stuff goes here you can edit with front-end editor
-            {% end_front_edit %}
-            </div>
-            <div class="col-md-5">            
-                {% if second_image %}         
-                <img class="img-circle img-responsive center-block" src="{{ second_image.url }}">         
-                {% endif %}
-            </div>
-        </div>
-    </div>
-
-    <hr>
-
-    <!-- Third Featurette -->
-    <div class="container">
-        <div class="row">
-            <div class="col-md-5">
-            {% if third_image %} 
-            <img class="img-circle img-responsive center-block" src="{{ third_image.url }}">
-            {% endif %}
-            </div>
-            <div class="col-md-5 col-md-offset-1">
-            {% front_edit "third feature heading" request.path request.LANGUAGE_CODE %}
-            Stuff goes here you can edit with front-end editor
-            {% end_front_edit  %}
-            {% front_edit "third feature content" request.path request.LANGUAGE_CODE %}
-            Stuff goes here you can edit with front-end editor
-            {% end_front_edit  %}
-
-            </div>
-        </div>
-    </div>
-
-    <hr>
-    <hr>
-
-
-
-
-        <!-- Footer -->
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        {% front_edit "footer feature" request.path request.LANGUAGE_CODE %}
-                        <p>Copyright &copy; 2016</p>
-                        {% end_front_edit  %}
                     </div>
                 </div>
+
+            </aside>
+            <!-- /Sidebar -->
+
+        </div>
+
+    
+</div>
+    
+</div>
+<!-- /Intro-->
+
+<!-- Highlights - jumbotron -->
+<div class="jumbotron top-space">
+    <div class="container">
+        {% front_edit "highlights title" request.path request.LANGUAGE_CODE %}
+        <h3 class="text-center thin">Why should you attend CNY LAN?</h3>
+        {% end_front_edit %}
+        <div class="row">
+            <div class="col-md-4 col-sm-6 highlight">
+                
+                <div class="h-caption"><h4><i class="fa fa-desktop fa-5"></i>Games</h4></div>
+                <div class="h-body text-center">
+                    {% front_edit "first highlight" request.path request.LANGUAGE_CODE %}
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque aliquid adipisci aspernatur. Soluta quisquam dignissimos earum quasi voluptate. Amet, dignissimos, tenetur vitae dolor quam iusto assumenda hic reprehenderit?</p>
+                    {% end_front_edit %}
+                </div>
+                
             </div>
-        </footer>
+            <div class="col-md-4 col-sm-6 highlight">
+                
+                <div class="h-caption"><h4><i class="fa fa-trophy fa-5"></i>Prizes</h4></div>
+                <div class="h-body text-center">
+                    {% front_edit "second highlight" request.path request.LANGUAGE_CODE %}
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores, commodi, sequi quis ad fugit omnis cumque a libero error nesciunt molestiae repellat quos perferendis numquam quibusdam rerum repellendus laboriosam reprehenderit! </p>
+                    {% end_front_edit %}
+                </div>
+                
+            </div>
+            <div class="col-md-4 col-sm-6 highlight">                
+                <div class="h-caption"><h4><i class="fa fa-thumbs-up fa-5"></i>Sponsors</h4></div>
+                <div class="h-body text-center">
+                    {% front_edit "third highlight" request.path request.LANGUAGE_CODE %}
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, vitae, perferendis, perspiciatis nobis voluptate quod illum soluta minima ipsam ratione quia numquam eveniet eum reprehenderit dolorem dicta nesciunt corporis?</p>
+                    {% end_front_edit %}
+                </div>
+                
+            </div>
+        </div> <!-- /row  -->
+    
+    </div>
+</div>
+<!-- /Highlights -->
 
-
-    <!-- /.container -->
 {% endblock content %}

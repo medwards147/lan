@@ -15,3 +15,11 @@ class IndexView(generic.ListView):
 class DetailView(generic.DetailView):
     model = Event
     template_name = 'lanapp/detail.html'
+
+    def get_context_data(self, **kwargs):
+	    context = super(DetailView, self).get_context_data(**kwargs)
+	    context['sponsors'] = Sponsor.objects.all()
+	    context['games'] = Game.objects.all()
+	    context['prizes'] = Prize.objects.all()
+	    # And so on for more models
+	    return context

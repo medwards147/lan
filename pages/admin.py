@@ -1,13 +1,6 @@
 from django.contrib import admin
 
-from .models import About, HomePage
-
-class AboutAdmin(admin.ModelAdmin):
-    fieldsets = [
-        ('About Page Info',          {'fields': ['title', 'description']}),      
-    ]
-    #inlines = [GameInline, SponsorInline, PrizeInlines
-    list_display = ('title', 'last_page_updated', 'updated', 'created', )
+from .models import HomePage
 
 class HomePageAdmin(admin.ModelAdmin):
     fieldsets = [
@@ -23,4 +16,3 @@ class HomePageAdmin(admin.ModelAdmin):
     search_fields = ['updated']
 
 admin.site.register(HomePage, HomePageAdmin)
-admin.site.register(About, AboutAdmin)

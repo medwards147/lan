@@ -44,22 +44,6 @@ class TimeStampedModel(models.Model):
     class Meta:
         abstract = True
 
-class About(TimeStampedModel):
-    title = models.CharField(max_length=75)
-    description = models.TextField(
-        help_text="Enter what you want to say about CNY LAN. This will show up at the top of the about page")
-
-    class Meta:
-        verbose_name = _("About page")
-        verbose_name_plural = _("About pages")
-
-    @property
-    def last_page_updated(self):
-        last_page_updated = About.objects.all().order_by('updated')[0]
-        if self.title == last_page_updated.title:
-            return True
-        return False
-
 class HomePage(models.Model):
     """
     Main HomePage object. It's useful to build in the HomePage in the back end. Although it does contrict the
@@ -91,7 +75,7 @@ class HomePage(models.Model):
             null=True,
             blank=True,
             help_text="Third Content Heading Image")
-    
+
     objects = HomePageManager()
     
     class Meta:

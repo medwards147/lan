@@ -1,0 +1,14 @@
+{% extends 'index.html' %}
+
+{% block head_title %}Email Sent{% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+        <h2>Success! Thank for your email.</h2>
+        <p class="lead">Return to home by clicking <a href="{% url 'pages:index' %}">here</a></p>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
