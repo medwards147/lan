@@ -10,3 +10,4 @@ lan/lanapp/migrations
 production.py
 wsgi.py
 media/*
+/lan_env
