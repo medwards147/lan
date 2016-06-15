@@ -22,10 +22,10 @@ def homepage(request):
     second_image = homepage.second_image
     third_image = homepage.third_image
 
-    if Event.objects.all().count == 0:  
-        event = Event.objects.order_by('event_start_date')[0]
-    else:
+    if Event.objects.all().count() == 0:  
         event = Event.objects.create_event()
+    else:
+        event = Event.objects.order_by('event_start_date')[0]
     
     context = {
             "homepage": homepage,
