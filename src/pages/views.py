@@ -1,14 +1,8 @@
 
+from django.shortcuts import render
 
-from django.core.mail import send_mail, BadHeaderError
-from django.http import HttpResponse,HttpResponseRedirect
-from django.shortcuts import render, redirect
-from django.views import generic
-
-from .forms import ContactForm
 from .models import HomePage
-from lanapp.models import Event, Prize, Sponsor, Game
-
+from lanapp.models import Event
 
 def homepage(request):
     """
@@ -27,8 +21,11 @@ def homepage(request):
     first_image = homepage.first_image
     second_image = homepage.second_image
     third_image = homepage.third_image
-    
-    event = Event.objects.order_by('event_start_date')[0]
+
+    if Event.objects.all().count == 0:  
+        event = Event.objects.order_by('event_start_date')[0]
+    else:
+        event = Event.objects.create_event()
     
     context = {
             "homepage": homepage,
@@ -40,23 +37,3 @@ def homepage(request):
 
     }
     return render(request, "pages/index.html", context)
-
-def about(request):
-    context = {}
-    return render(request, "pages/about.html", context)
-
-def contact(request):
-    if request.method == 'GET':
-        form = ContactForm()
-    else:
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            subject = form.cleaned_data['subject']
-            from_email = form.cleaned_data['from_email']
-            message = form.cleaned_data['message']
-            try:
-                send_mail(subject, message, from_email, ['admin@example.com'])
-            except BadHeaderError:
-                return HttpResponse('Invalid header found.')
-            return redirect('thanks')
-    return render(request, "pages/contact.html", {'form': form})

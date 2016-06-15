@@ -76,18 +76,3 @@ img.pull-left { margin-right: 10px; }
 
 	.widget-simplenav { margin-left:-5px; }		
 	.widget-simplenav a{ margin:0 5px; }
-
-
-/* custom btn */
-.btn.btn-success {
-    color: #ffffff;
-    background-color: #000000;
-    background-image: linear-gradient(to bottom, #000000, #4f424f);
-    border-color: #ffffff #ffffff #ffffff;
-}
-.btn.btn-success:hover {
-    color: #ffffff;
-    background-color: #4f424f;
-    background-image: linear-gradient(to bottom, #4f424f, #4f424f);
-    border-color: #ffffff #ffffff #ffffff;
-}

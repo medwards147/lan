@@ -7,23 +7,11 @@
     <div class="footer2">
         <div class="container">
             <div class="row">
-                
-                <div class="col-md-6 widget">
-                    <div class="widget-body">
-                        <p class="simplenav">
-                            <a href="{% url 'pages:index' %}">Home</a> | 
-                            <a href="{% url 'lanapp:events' %}">LANS</a> |
-                            <a href="{% url 'pages:about' %}">About</a> |
-                            <a href="{% url 'pages:contact' %}">Contact</a> |
-                            <!-- <b><a href="signup.html">Sign up</a></b> -->
-                        </p>
-                    </div>
-                </div>
 
                 <div class="col-md-6 widget">
                     <div class="widget-body">
                         {% front_edit "footer right side" request.path request.LANGUAGE_CODE %}
-                        <p class="text-right">
+                        <p class="text-left">
                             Copyright &copy; 2016, CNYLAN
                         </p>
                         {% end_front_edit %}

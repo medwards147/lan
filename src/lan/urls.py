@@ -8,7 +8,6 @@ urlpatterns = [
     #url(r'^', include('lanapp.urls', namespace='lanapp')),
     #url(r'^$', pages.views.homepage_view, name='homepage'),
     url(r'^', include('pages.urls', namespace='pages')),
-    url(r'^lan/', include('lanapp.urls', namespace='lanapp')),
 
     url(r'^front-edit/', include('front.urls')),
 

@@ -16,7 +16,12 @@
             <h1 class="lead">CENTRAL NEW YORK</h1>
             <p class="tagline">BYOC LAN</p>
             {% end_front_edit %}
-        
+                            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                    <input type="hidden" name="cmd" value="_s-xclick">
+                    <input type="hidden" name="hosted_button_id" value="2H9ZMVMYPP8FS">
+                    <button type="submit" value='' class='btn btn-success'>
+                        <span class="glyphicon glyphicon-shopping-cart"></span>  {{ event.pay_button_text }}
+                    </button>
         </div>
     </div>
 </header>
@@ -27,6 +32,7 @@
  <!-- Page Content -->
 <hr>
 <!-- Intro -->
+
 <div class="container">
         <div class="row">
             
@@ -35,23 +41,14 @@
                 <h1 class="page-title"><strong>{{ event.event_name }}</strong> </h1>
                 <p><strong>Date:</strong> {{ event.event_start_date|date:"D, M d" }} to {{ event.event_end_date|date:"D, M d"  }}</p>
                 <p><strong>Location:</strong> {{ event.venue }}, {{ event.full_address }}</p>
-                {% front_edit "event details" request.path request.LANGUAGE_CODE %}
+                {% front_edit "first content area" request.path request.LANGUAGE_CODE %}
                 <p>Stuff here about the event Stuff here about the event Stuff here about the event Stuff here about the event</p>
                 <p>Stuff here about the event Stuff here about the event Stuff here about the event Stuff here about the event</p>
                 {% end_front_edit %}
-                <p>
-                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-                    <input type="hidden" name="cmd" value="_s-xclick">
-                    <input type="hidden" name="hosted_button_id" value="2H9ZMVMYPP8FS">
-                    <button type="submit" value='' class='btn btn-success'>
-                        <span class="glyphicon glyphicon-shopping-cart"></span>  {{ event.pay_button_text }}
-                    </button>
-                    
-                    <a href="{% url 'lanapp:detail' event.id %}" class="btn btn-primary" role="button">
-                        <span class="glyphicon glyphicon-share-alt"></span>  More Info
-                    </a>
-                    </form>
-                </p>
+
+
+
+
             </article>
             <!-- /Article -->
             
@@ -60,7 +57,7 @@
 
                 <div class="row widget">
                     <div class="col-xs-12">
-                        {% thumbnail event.image "400" as im %}
+                        {% thumbnail first_image "500" as im %}
                         <img class="img-responsive img-circle" src="{{ im.url }}"></img>
                         {% endthumbnail %}
 
@@ -72,52 +69,61 @@
 
         </div>
 
-    
-</div>
-    
-</div>
-<!-- /Intro-->
-
-<!-- Highlights - jumbotron -->
-<div class="jumbotron top-space">
-    <div class="container">
-        {% front_edit "highlights title" request.path request.LANGUAGE_CODE %}
-        <h3 class="text-center thin">Why should you attend CNY LAN?</h3>
-        {% end_front_edit %}
         <div class="row">
-            <div class="col-md-4 col-sm-6 highlight">
-                
-                <div class="h-caption"><h4><i class="fa fa-desktop fa-5"></i>Games</h4></div>
-                <div class="h-body text-center">
-                    {% front_edit "first highlight" request.path request.LANGUAGE_CODE %}
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque aliquid adipisci aspernatur. Soluta quisquam dignissimos earum quasi voluptate. Amet, dignissimos, tenetur vitae dolor quam iusto assumenda hic reprehenderit?</p>
-                    {% end_front_edit %}
-                </div>
-                
-            </div>
-            <div class="col-md-4 col-sm-6 highlight">
-                
-                <div class="h-caption"><h4><i class="fa fa-trophy fa-5"></i>Prizes</h4></div>
-                <div class="h-body text-center">
-                    {% front_edit "second highlight" request.path request.LANGUAGE_CODE %}
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores, commodi, sequi quis ad fugit omnis cumque a libero error nesciunt molestiae repellat quos perferendis numquam quibusdam rerum repellendus laboriosam reprehenderit! </p>
-                    {% end_front_edit %}
-                </div>
-                
-            </div>
-            <div class="col-md-4 col-sm-6 highlight">                
-                <div class="h-caption"><h4><i class="fa fa-thumbs-up fa-5"></i>Sponsors</h4></div>
-                <div class="h-body text-center">
-                    {% front_edit "third highlight" request.path request.LANGUAGE_CODE %}
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatem, vitae, perferendis, perspiciatis nobis voluptate quod illum soluta minima ipsam ratione quia numquam eveniet eum reprehenderit dolorem dicta nesciunt corporis?</p>
-                    {% end_front_edit %}
-                </div>
-                
-            </div>
-        </div> <!-- /row  -->
-    
-    </div>
-</div>
-<!-- /Highlights -->
+            
+            <!-- Left Sidebar -->
+            <aside class="col-md-6 sidebar sidebar-right">
 
+                <div class="row widget">
+                    <div class="col-xs-12">
+                        {% thumbnail second_image "500" as im %}
+                        <img class="img-responsive img-circle" src="{{ im.url }}"></img>
+                        {% endthumbnail %}
+
+                    </div>
+                </div>
+
+            </aside>
+            <!-- /Left Sidebar -->
+            
+            <!-- Article 2 main content -->
+            <article class="col-md-6 maincontent">
+                {% front_edit "second content area" request.path request.LANGUAGE_CODE %}
+                <h1 class="page-title"><strong>Second Content Heading</strong> </h1>                
+                <p>Stuff here about the event Stuff here about the event Stuff here about the event Stuff here about the event</p>
+                {% end_front_edit %}
+            </article>
+            <!-- /Article 2-->
+
+        </div>
+        <div class="row">
+            
+            <!-- Article main content -->
+            <article class="col-md-6 maincontent">
+                {% front_edit "third content area" request.path request.LANGUAGE_CODE %}
+                <h1 class="page-title"><strong>Third Content Heading</strong></h1>                
+                <p>Stuff here about the event Stuff here about the event Stuff here about the event Stuff here about the event</p>
+                {% end_front_edit %}
+
+            </article>
+            <!-- /Article -->
+            
+            <!-- Sidebar -->
+            <aside class="col-md-6 sidebar sidebar-right">
+
+                <div class="row widget">
+                    <div class="col-xs-12">
+                        {% thumbnail third_image "500" as im %}
+                        <img class="img-responsive img-circle" src="{{ im.url }}"></img>
+                        {% endthumbnail %}
+
+                    </div>
+                </div>
+
+            </aside>
+            <!-- /Sidebar -->
+
+        </div>
+    
+</div>
 {% endblock content %}

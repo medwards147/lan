@@ -6,8 +6,6 @@ from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 
 
-
-
 class HomePageManager(models.Manager):
     def create_homepage(self, title):
         homepage = self.create(homepage_name=title, current_homepage=True)
@@ -53,12 +51,7 @@ class HomePage(models.Model):
     current_homepage = models.BooleanField(
         help_text="Click here if you want this page to be the current home page",)
     homepage_name = models.CharField(max_length=35)
-    # heading = models.CharField(max_length=200,
-    #     help_text="The main heading for the homepage",
-    #     default="Central New York LAN")
-    # subheading = models.CharField(max_length=200,
-    #     help_text="The subheading just below the heading",
-    #     default="Default subheading")
+
     banner_image = models.ImageField(upload_to=upload_location,
                     null=True,
                     blank=True,
@@ -79,8 +72,8 @@ class HomePage(models.Model):
     objects = HomePageManager()
     
     class Meta:
-        verbose_name = _("Home page")
-        verbose_name_plural = _("Home pages")
+        verbose_name = _("Homepage")
+        verbose_name_plural = _("Homepages")
 
     @transaction.atomic
     def save(self, *args, **kwargs):
@@ -99,9 +92,3 @@ class HomePage(models.Model):
 
     def __str__(self):
         return self.homepage_name
-
-   # def get_absolute_url(self):
-       # """
-       # absolute url
-       # """
-       # return reverse("homepage", kwargs={})
