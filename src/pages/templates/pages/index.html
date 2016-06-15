@@ -17,9 +17,7 @@
             <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
             <input type="hidden" name="cmd" value="_s-xclick">
             <input type="hidden" name="hosted_button_id" value="2H9ZMVMYPP8FS">
-            <button type="submit" value='' class='btn btn-success'>
-            <span class="glyphicon glyphicon-shopping-cart"></span>  {{ event.pay_button_text }}
-            </button>
+            <input type="submit" value='{{ event.pay_button_text }}' class='btn btn-success btn-lg'>
             </form>
         </div>
     </div>
@@ -56,9 +54,7 @@
 
                 <div class="row widget">
                     <div class="col-xs-12">
-                        {% thumbnail homepage.first_image "500" as im %}
-                        <img class="img-responsive img-circle" src="{{ im.url }}"></img>
-                        {% endthumbnail %}
+                        <img class="img-responsive img-circle" src="{{ first_image.url }}"></img>
 
                     </div>
                 </div>
@@ -75,9 +71,7 @@
 
                 <div class="row widget">
                     <div class="col-xs-12">
-                        {% thumbnail homepage.second_image "500" as im %}
-                        <img class="img-responsive img-circle" src="{{ im.url }}"></img>
-                        {% endthumbnail %}
+                        <img class="img-responsive img-circle" src="{{ second_image.url }}"></img>
 
                     </div>
                 </div>
@@ -112,10 +106,7 @@
 
                 <div class="row widget">
                     <div class="col-xs-12">
-                        {% thumbnail homepage.third_image "500" as im %}
-                        <img class="img-responsive img-circle" src="{{ im.url }}"></img>
-                        {% endthumbnail %}
-
+                        <img class="img-responsive img-circle" src="{{ third_image.url }}"></img>
                     </div>
                 </div>
 
