@@ -56,7 +56,7 @@
 
                 <div class="row widget">
                     <div class="col-xs-12">
-                        {% thumbnail first_image "500" as im %}
+                        {% thumbnail homepage.first_image "500" as im %}
                         <img class="img-responsive img-circle" src="{{ im.url }}"></img>
                         {% endthumbnail %}
 
@@ -75,7 +75,7 @@
 
                 <div class="row widget">
                     <div class="col-xs-12">
-                        {% thumbnail second_image "500" as im %}
+                        {% thumbnail homepage.second_image "500" as im %}
                         <img class="img-responsive img-circle" src="{{ im.url }}"></img>
                         {% endthumbnail %}
 
@@ -112,7 +112,7 @@
 
                 <div class="row widget">
                     <div class="col-xs-12">
-                        {% thumbnail third_image "500" as im %}
+                        {% thumbnail homepage.third_image "500" as im %}
                         <img class="img-responsive img-circle" src="{{ im.url }}"></img>
                         {% endthumbnail %}
 
