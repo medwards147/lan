@@ -34,6 +34,6 @@ def homepage(request):
             "second_image": second_image,
             "third_image": third_image,
             "event" : event,
-
     }
+    
     return render(request, "pages/index.html", context)

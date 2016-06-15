@@ -4,7 +4,7 @@ from .models import HomePage
 
 class HomePageAdmin(admin.ModelAdmin):
     fieldsets = [
-        ('Home Page Info',          {'fields': ['homepage_name', 'current_homepage']}),
+        ('Home Page Info',          {'fields': ['homepage_name', 'current_homepage', 'heading', 'subheading']}),
         ('Banner Image',             {'fields': ['banner_image', ]}),
         ('First Image',  {'fields': [('first_image', ) ]}),
         ('Second Image', {'fields': [('second_image', ) ]}),

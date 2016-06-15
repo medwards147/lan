@@ -2,7 +2,6 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.db import transaction
-from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -51,7 +50,8 @@ class HomePage(models.Model):
     current_homepage = models.BooleanField(
         help_text="Click here if you want this page to be the current home page",)
     homepage_name = models.CharField(max_length=35)
-
+    heading = models.CharField(max_length=100, default="Default Heading")
+    subheading = models.CharField(max_length=100, default="Default Subheading")
     banner_image = models.ImageField(upload_to=upload_location,
                     null=True,
                     blank=True,
