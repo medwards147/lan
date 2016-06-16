@@ -12,3 +12,4 @@ wsgi.py
 media/*
 /lan_env
 /src/www/static
+/src/static
