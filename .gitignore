@@ -14,3 +14,4 @@ media/*
 /src/www/static
 /src/static
 /src/lan/settings
+manage.py

@@ -1,6 +1,6 @@
 {% extends "pages/base.html" %}
 
-{% load front_tags thumbnail %}
+{% load front_tags %}
 
 {% block head_title %}Home{% endblock %}
 
@@ -47,7 +47,11 @@
             
             <!--  1st image -->
             <aside class="col-md-6">
-		<img class="img-responsive img-circle" src="{{ first_image.url }}"></img>
+                {% if first_image.url %}
+        		<img class="img-responsive img-circle" src="{{ first_image.url }}"></img>
+                {% else %}
+                <p style="color:red;">{{ first_image }} or the first content image</p>
+                {% endif %}
             </aside>
             <!-- /1st image -->
 
@@ -65,8 +69,13 @@
             </article>
             <!-- 2nd image -->
             <aside class="col-sm-6 col-sm-pull-6">
-		<img class="img-responsive img-circle" src="{{ second_image.url }}"></img>
+                {% if second_image.url %}
+        		<img class="img-responsive img-circle" src="{{ second_image.url }}"></img>
+                {% else %}
+                <p style="color:red;">{{ second_image }} or the second content image</p>
+                {% endif %}
             </aside>
+
             <!-- /2nd image -->
 
             <!-- /Article 2-->
@@ -87,7 +96,11 @@
 
             <!-- 3rd image -->
             <aside class="col-md-6">
-		<img class="img-responsive img-circle" src="{{ third_image.url }}"></img>
+                {% if third_image.url %}
+        		<img class="img-responsive img-circle" src="{{ third_image.url }}"></img>
+                {% else %}
+                <p style="color:red;">{{ third_image }} for the third content image</p>
+                {% endif %}
             </aside>
             <!-- /3rd image -->
         </div>

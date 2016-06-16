@@ -4,6 +4,12 @@ from django.shortcuts import render
 from .models import HomePage
 from lanapp.models import Event
 
+def get_image_check(img_obj):
+    if img_obj:
+        return img_obj
+    else:
+        return "You need to add an image in the admin"
+
 def homepage(request):
     """
     Builds view for homepage.
@@ -18,9 +24,9 @@ def homepage(request):
     except ValueError:
         banner_image = "No banner image"
 
-    first_image = homepage.first_image
-    second_image = homepage.second_image
-    third_image = homepage.third_image
+    first_image = get_image_check(homepage.first_image)
+    second_image = get_image_check(homepage.second_image)
+    third_image = get_image_check(homepage.third_image)
 
     if Event.objects.all().count() == 0:  
         event = Event.objects.create_event()
