@@ -34,7 +34,7 @@
         <div class="row">
             
             <!-- Article main content -->
-            <article class="col-md-6 maincontent">
+            <article class="col-md-6">
                 <h1 class="page-title"><strong>{{ event.event_name }}</strong> </h1>
                 <p><strong>Date:</strong> {{ event.event_start_date|date:"D, M d" }} to {{ event.event_end_date|date:"D, M d"  }}</p>
                 <p><strong>Location:</strong> {{ event.venue }}, {{ event.full_address }}</p>
@@ -42,77 +42,54 @@
                 <p>Stuff here about the event Stuff here about the event Stuff here about the event Stuff here about the event</p>
                 <p>Stuff here about the event Stuff here about the event Stuff here about the event Stuff here about the event</p>
                 {% end_front_edit %}
-
-
-
-
             </article>
             <!-- /Article -->
             
-            <!-- Sidebar -->
-            <aside class="col-md-6 sidebar sidebar-right">
-
-                <div class="row widget">
-                    <div class="col-xs-12">
-                        <img class="img-responsive img-circle" src="{{ first_image.url }}"></img>
-
-                    </div>
-                </div>
-
+            <!--  1st image -->
+            <aside class="col-md-6">
+		<img class="img-responsive img-circle" src="{{ first_image.url }}"></img>
             </aside>
-            <!-- /Sidebar -->
+            <!-- /1st image -->
 
         </div>
 
+	<hr>
         <div class="row">
-            
-            <!-- Left Sidebar -->
-            <aside class="col-md-6 sidebar sidebar-right">
 
-                <div class="row widget">
-                    <div class="col-xs-12">
-                        <img class="img-responsive img-circle" src="{{ second_image.url }}"></img>
-
-                    </div>
-                </div>
-
-            </aside>
-            <!-- /Left Sidebar -->
-            
             <!-- Article 2 main content -->
-            <article class="col-md-6 maincontent">
+            <article class="col-sm-6 col-sm-push-6">
                 {% front_edit "second content area" request.path request.LANGUAGE_CODE %}
                 <h1 class="page-title"><strong>Second Content Heading</strong> </h1>                
                 <p>Stuff here about the event Stuff here about the event Stuff here about the event Stuff here about the event</p>
                 {% end_front_edit %}
             </article>
-            <!-- /Article 2-->
+            <!-- 2nd image -->
+            <aside class="col-sm-6 col-sm-pull-6">
+		<img class="img-responsive img-circle" src="{{ second_image.url }}"></img>
+            </aside>
+            <!-- /2nd image -->
 
+            <!-- /Article 2-->
         </div>
+	
+	<hr>
+
         <div class="row">
             
             <!-- Article main content -->
-            <article class="col-md-6 maincontent">
+            <article class="col-md-6">
                 {% front_edit "third content area" request.path request.LANGUAGE_CODE %}
                 <h1 class="page-title"><strong>Third Content Heading</strong></h1>                
                 <p>Stuff here about the event Stuff here about the event Stuff here about the event Stuff here about the event</p>
                 {% end_front_edit %}
-
             </article>
             <!-- /Article -->
-            
-            <!-- Sidebar -->
-            <aside class="col-md-6 sidebar sidebar-right">
 
-                <div class="row widget">
-                    <div class="col-xs-12">
-                        <img class="img-responsive img-circle" src="{{ third_image.url }}"></img>
-                    </div>
-                </div>
-
+            <!-- 3rd image -->
+            <aside class="col-md-6">
+		<img class="img-responsive img-circle" src="{{ third_image.url }}"></img>
             </aside>
-            <!-- /Sidebar -->
-
+            <!-- /3rd image -->
         </div>
     
 </div>

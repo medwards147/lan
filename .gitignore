@@ -13,3 +13,4 @@ media/*
 /lan_env
 /src/www/static
 /src/static
+/src/lan/settings
