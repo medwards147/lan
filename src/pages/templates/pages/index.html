@@ -9,7 +9,7 @@
 {% block header %}
 
 <!-- Header -->
-<header id="head" style="background:url('{% if banner_image %}{{ banner_image.url }}{% endif %}')">
+<header id="head" style="background:url('{% if homepage.banner_image %}{{ homepage.banner_image.url }}{% endif %}')">
     <div class="container">
         <div class="row">
             <h1 class="lead">{{ homepage.heading }}</h1>
@@ -47,10 +47,10 @@
             
             <!--  1st image -->
             <aside class="col-md-6">
-                {% if first_image.url %}
-        		<img class="img-responsive img-circle" src="{{ first_image.url }}"></img>
+                {% if homepage.first_image %}
+        		<img class="img-responsive img-circle" src="{{ homepage.first_image.url }}"></img>
                 {% else %}
-                <p style="color:red;">{{ first_image }} or the first content image</p>
+                <p style="color:red;">You need to add the first content image in admin</p>
                 {% endif %}
             </aside>
             <!-- /1st image -->
@@ -69,10 +69,10 @@
             </article>
             <!-- 2nd image -->
             <aside class="col-sm-6 col-sm-pull-6">
-                {% if second_image.url %}
-        		<img class="img-responsive img-circle" src="{{ second_image.url }}"></img>
+                {% if homepage.second_image %}
+        		<img class="img-responsive img-circle" src="{{ homepage.second_image.url }}"></img>
                 {% else %}
-                <p style="color:red;">{{ second_image }} or the second content image</p>
+                <p style="color:red;">You need to add the second content image in admin<</p>
                 {% endif %}
             </aside>
 
@@ -96,10 +96,10 @@
 
             <!-- 3rd image -->
             <aside class="col-md-6">
-                {% if third_image.url %}
-        		<img class="img-responsive img-circle" src="{{ third_image.url }}"></img>
+                {% if homepage.third_image %}
+        		<img class="img-responsive img-circle" src="{{ homepage.third_image.url }}"></img>
                 {% else %}
-                <p style="color:red;">{{ third_image }} for the third content image</p>
+                <p style="color:red;">You need to add the third content image in admin<</p>
                 {% endif %}
             </aside>
             <!-- /3rd image -->
