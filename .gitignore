@@ -11,4 +11,4 @@ production.py
 wsgi.py
 media/*
 /lan_env
-/www/static
+/src/www/static
